@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+
+    /* ─── Main palette — TeamFiles ─── */
+    --background: 0.97 0.006 242;
+    --foreground: 0.162 0.022 264;
+    --card: 1 0 0;
+    --card-foreground: 0.162 0.022 264;
+    --popover: 1 0 0;
+    --popover-foreground: 0.162 0.022 264;
+    --primary: 0.572 0.191 258;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.955 0.005 240;
+    --secondary-foreground: 0.162 0.022 264;
+    --muted: 0.955 0.005 240;
+    --muted-foreground: 0.5 0.012 258;
+    --accent: 0.955 0.01 240;
+    --accent-foreground: 0.162 0.022 264;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 1 0 0;
+    --border: 0.91 0.008 247;
+    --input: 0.91 0.008 247;
+    --ring: 0.572 0.191 258;
+
+    /* ─── Chart ─── */
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    /* ─── Sidebar — deep navy ─── */
+    --sidebar: 0.158 0.043 222;
+    --sidebar-foreground: 0.925 0 0;
+    --sidebar-primary: 0.724 0.213 145;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.21 0.05 222;
+    --sidebar-accent-foreground: 1 0 0;
+    --sidebar-border: 0.12 0.038 222;
+    --sidebar-ring: 0.572 0.191 258;
+
+    /* ─── TeamFiles custom tokens ─── */
+    --tf-green: 0.724 0.213 145;
+    --tf-green-hover: 0.668 0.21 145;
+    --tf-blue: 0.507 0.244 264;
+    --tf-blue-hover: 0.455 0.24 264;
+    --tf-row-hover: 0.955 0.01 240;
+    --tf-table-header: 0.955 0.005 240;
+    --tf-navy: 0.158 0.043 222;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* ─── Quill Snow Theme Overrides ─── */
+.tf-quill-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.tf-quill-wrapper .ql-container.ql-snow {
+  border: none;
+  border-top: 1px solid oklch(var(--border));
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.tf-quill-wrapper .ql-toolbar.ql-snow {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid oklch(var(--border));
+  background: oklch(var(--card));
+  padding: 8px 12px;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+.tf-quill-wrapper .ql-editor {
+  padding: 20px 28px;
+  min-height: 400px;
+  color: oklch(var(--foreground));
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+.tf-quill-wrapper .ql-editor.ql-blank::before {
+  color: oklch(var(--muted-foreground));
+  font-style: normal;
+  font-size: 15px;
+}
+
+.tf-quill-wrapper .ql-toolbar.ql-snow .ql-formats {
+  margin-right: 12px;
+}
+
+.tf-quill-wrapper .ql-snow .ql-picker {
+  color: oklch(var(--foreground));
+}
+
+.tf-quill-wrapper .ql-snow .ql-stroke {
+  stroke: oklch(var(--muted-foreground));
+}
+
+.tf-quill-wrapper .ql-snow .ql-fill {
+  fill: oklch(var(--muted-foreground));
+}
+
+.tf-quill-wrapper .ql-snow .ql-picker-label {
+  color: oklch(var(--muted-foreground));
+}
+
+.tf-quill-wrapper .ql-snow button:hover .ql-stroke,
+.tf-quill-wrapper .ql-snow .ql-active .ql-stroke {
+  stroke: oklch(var(--primary));
+}
+
+.tf-quill-wrapper .ql-snow button:hover .ql-fill,
+.tf-quill-wrapper .ql-snow .ql-active .ql-fill {
+  fill: oklch(var(--primary));
+}
+
+.tf-quill-wrapper .ql-snow button:hover,
+.tf-quill-wrapper .ql-snow .ql-active {
+  color: oklch(var(--primary));
+}

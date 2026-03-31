@@ -1,0 +1,68 @@
+type _CaffeineStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _CaffeineStorageRefillInformation = record {
+                                           proposed_top_up_amount: opt nat;};
+type _CaffeineStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type FileMetadata = 
+ record {
+   blobHash: text;
+   id: text;
+   mimeType: text;
+   name: text;
+   size: nat;
+   uploadedAt: int;
+   uploaderPrincipal: text;
+ };
+type DocumentSummary = 
+ record {
+   createdAt: int;
+   id: text;
+   title: text;
+   updatedAt: int;
+ };
+type Document = 
+ record {
+   createdAt: int;
+   creatorPrincipal: text;
+   htmlContent: text;
+   id: text;
+   title: text;
+   updatedAt: int;
+ };
+service : {
+  _caffeineStorageBlobIsLive: (hash: blob) -> (bool) query;
+  _caffeineStorageBlobsToDelete: () -> (vec blob) query;
+  _caffeineStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _caffeineStorageCreateCertificate: (blobHash: text) ->
+   (_CaffeineStorageCreateCertificateResult);
+  _caffeineStorageRefillCashier: (refillInformation:
+   opt _CaffeineStorageRefillInformation) -> (_CaffeineStorageRefillResult);
+  _caffeineStorageUpdateGatewayPrincipals: () -> ();
+  _initializeAccessControlWithSecret: (userSecret: text) -> ();
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createDocument: (title: text) -> (text);
+  deleteDocument: (docId: text) -> (bool);
+  deleteFile: (fileId: text) -> (bool);
+  getCallerUserRole: () -> (UserRole) query;
+  getDocument: (docId: text) -> (opt Document) query;
+  getFileMetadata: (fileId: text) -> (opt FileMetadata) query;
+  isCallerAdmin: () -> (bool) query;
+  listDocuments: () -> (vec DocumentSummary) query;
+  listFiles: () -> (vec FileMetadata) query;
+  registerFile: (name: text, size: nat, mimeType: text, blobHash: text) ->
+   (text);
+  saveDocument: (docId: text, title: text, htmlContent: text) -> (bool);
+}
